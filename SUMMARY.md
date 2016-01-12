@@ -1,4 +1,4 @@
 # Summary
 
-* [java](java.md)
+* [java](java/java.md)
 
