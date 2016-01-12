@@ -1,5 +1,5 @@
 # Summary
 
 * [java](java.md)
-   * singleton.md
+   * [单例](singleton.md)
 
