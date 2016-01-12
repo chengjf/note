@@ -1,4 +1,6 @@
 # Summary
 
-* [java](java/java.md)
+* [java](java.md)
+   * 单例
+   * singleton.md
 
