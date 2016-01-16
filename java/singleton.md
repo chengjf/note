@@ -52,6 +52,9 @@ public enum AmericaPresident{
 
 ```java
 class AmericaPresident {
+
+    private AmericaPresident() {}
+
     private static class AmericaPresidentHolder {
         public static AmericaPresident thePresident = new AmericaPresident();
     }
