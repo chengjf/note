@@ -47,3 +47,17 @@ public enum AmericaPresident{
 	}
 }
 ```
+
+##静态内部类
+
+```java
+class AmericaPresident {
+    private static class AmericaPresidentHolder {
+        public static AmericaPresident thePresident = new AmericaPresident();
+    }
+
+    public static AmericaPresident getPresident() {
+        return AmericaPresidentHolder.thePresident;
+    }
+}
+```
