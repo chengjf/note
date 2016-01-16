@@ -75,3 +75,48 @@ class AmericaPresident {
     }
 }
 ```
+
+
+#现有框架内的实现
+
+##Spring-framework
+
+spring-framework/spring-jdbc/src/main/java/org/springframework/jdbc/datasource/embedded/HsqlEmbeddedDatabaseConfigurer.java
+
+```java
+final class HsqlEmbeddedDatabaseConfigurer extends AbstractEmbeddedDatabaseConfigurer {
+
+	private static HsqlEmbeddedDatabaseConfigurer instance;
+
+	private final Class<? extends Driver> driverClass;
+
+
+	/**
+	 * Get the singleton {@link HsqlEmbeddedDatabaseConfigurer} instance.
+	 * @return the configurer
+	 * @throws ClassNotFoundException if HSQL is not on the classpath
+	 */
+	@SuppressWarnings("unchecked")
+	public static synchronized HsqlEmbeddedDatabaseConfigurer getInstance() throws ClassNotFoundException {
+		if (instance == null) {
+			instance = new HsqlEmbeddedDatabaseConfigurer( (Class<? extends Driver>)
+					ClassUtils.forName("org.hsqldb.jdbcDriver", HsqlEmbeddedDatabaseConfigurer.class.getClassLoader()));
+		}
+		return instance;
+	}
+
+
+	private HsqlEmbeddedDatabaseConfigurer(Class<? extends Driver> driverClass) {
+		this.driverClass = driverClass;
+	}
+
+	@Override
+	public void configureConnectionProperties(ConnectionProperties properties, String databaseName) {
+		properties.setDriverClass(this.driverClass);
+		properties.setUrl("jdbc:hsqldb:mem:" + databaseName);
+		properties.setUsername("sa");
+		properties.setPassword("");
+	}
+
+}
+```
