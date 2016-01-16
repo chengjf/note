@@ -29,14 +29,18 @@ public class AmericaPresident {
 	}
  
 	public static AmericaPresident getPresident() {
-		if (thePresident == null) { // First check
+		// local variable increases performance by 25 percent
+    		// Joshua Bloch "Effective Java, Second Edition", p. 283-284
+		AmericaPresident result = thePresident;
+		if (result == null) { // First check
 			synchronized(AmericaPresident.class) {
-			 	if (thePresident == null){ // Double check
-					thePresident = new AmericaPresident();
+				result = thePresident;
+			 	if (result == null){ // Double check
+					thePresident = result = new AmericaPresident();
 				}
 			}
 		}
-		return thePresident;
+		return result;
 	}
 }
 ```
