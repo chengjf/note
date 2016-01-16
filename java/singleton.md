@@ -21,7 +21,12 @@ public class AmericaPresident {
 public class AmericaPresident {
 	private static volatile AmericaPresident thePresident = null; // volatile is important!
  
-	private AmericaPresident() {}
+	private AmericaPresident() {
+		// to prevent instantiating by Reflection call
+		if (thePresident != null) {
+      			throw new IllegalStateException("Already initialized.");
+    		}
+	}
  
 	public static AmericaPresident getPresident() {
 		if (thePresident == null) { // First check
