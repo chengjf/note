@@ -120,3 +120,68 @@ final class HsqlEmbeddedDatabaseConfigurer extends AbstractEmbeddedDatabaseConfi
 
 }
 ```
+
+spring-framework/spring-test/src/main/java/org/springframework/test/annotation/SystemProfileValueSource.java
+
+```java
+public class SystemProfileValueSource implements ProfileValueSource {
+
+	private static final SystemProfileValueSource INSTANCE = new SystemProfileValueSource();
+
+
+	/**
+	 * Obtain the canonical instance of this ProfileValueSource.
+	 */
+	public static final SystemProfileValueSource getInstance() {
+		return INSTANCE;
+	}
+
+
+	/**
+	 * Private constructor, enforcing the singleton pattern.
+	 */
+	private SystemProfileValueSource() {
+	}
+
+	/**
+	 * Get the <em>profile value</em> indicated by the specified key from the
+	 * system properties.
+	 * @see System#getProperty(String)
+	 */
+	@Override
+	public String get(String key) {
+		Assert.hasText(key, "'key' must not be empty");
+		return System.getProperty(key);
+	}
+
+}
+```
+
+spring-framework/spring-aop/src/main/java/org/springframework/aop/framework/adapter/GlobalAdvisorAdapterRegistry.java
+
+```java
+public abstract class GlobalAdvisorAdapterRegistry {
+
+	/**
+	 * Keep track of a single instance so we can return it to classes that request it.
+	 */
+	private static AdvisorAdapterRegistry instance = new DefaultAdvisorAdapterRegistry();
+
+	/**
+	 * Return the singleton {@link DefaultAdvisorAdapterRegistry} instance.
+	 */
+	public static AdvisorAdapterRegistry getInstance() {
+		return instance;
+	}
+
+	/**
+	 * Reset the singleton {@link DefaultAdvisorAdapterRegistry}, removing any
+	 * {@link AdvisorAdapterRegistry#registerAdvisorAdapter(AdvisorAdapter) registered}
+	 * adapters.
+	 */
+	static void reset() {
+		instance = new DefaultAdvisorAdapterRegistry();
+	}
+
+}
+```
