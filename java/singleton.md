@@ -1,5 +1,7 @@
 #单例
 
+https://github.com/iluwatar/java-design-patterns/tree/master/singleton/src/main/java/com/iluwatar/singleton
+
 ##~~饿汉模式~~
 
 ```java
@@ -30,7 +32,7 @@ public class AmericaPresident {
  
 	public static AmericaPresident getPresident() {
 		// local variable increases performance by 25 percent
-    		// Joshua Bloch "Effective Java, Second Edition", p. 283-284
+		// Joshua Bloch "Effective Java, Second Edition", p. 283-284
 		AmericaPresident result = thePresident;
 		if (result == null) { // First check
 			synchronized(AmericaPresident.class) {
