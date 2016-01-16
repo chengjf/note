@@ -19,13 +19,17 @@ public class AmericaPresident {
 
 ```java
 public class AmericaPresident {
-	private static AmericaPresident thePresident;
+	private static volatile AmericaPresident thePresident = null; // volatile is important!
  
 	private AmericaPresident() {}
  
 	public static AmericaPresident getPresident() {
-		if (thePresident == null) {
-			thePresident = new AmericaPresident();
+		if (thePresident == null) { // First check
+			synchronized(AmericaPresident.class) {
+			 	if (thePresident == null){ // Double check
+					thePresident = new AmericaPresident();
+				}
+			}
 		}
 		return thePresident;
 	}
