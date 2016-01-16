@@ -31,3 +31,15 @@ public class AmericaPresident {
 	}
 }
 ```
+
+##枚举实现
+
+```java
+public enum AmericaPresident{
+	INSTANCE;
+ 
+	public static void doSomething(){
+		//do something
+	}
+}
+```
