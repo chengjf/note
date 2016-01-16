@@ -1,6 +1,6 @@
 #单例
 
-##饿汉模式
+##~~饿汉模式~~
 
 ```java
 
@@ -15,7 +15,7 @@ public class AmericaPresident {
 }
 ```
 
-##懒汉模式
+##~~懒汉模式(Double check)~~
 
 ```java
 public class AmericaPresident {
@@ -48,7 +48,7 @@ public enum AmericaPresident{
 }
 ```
 
-##静态内部类
+##~~静态内部类~~
 
 ```java
 class AmericaPresident {
